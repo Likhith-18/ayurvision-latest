@@ -1,0 +1,72 @@
+# Use the official Node.js image as the base image
+FROM node:18
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install Node.js dependencies
+RUN npm install
+
+# Install Python and other dependencies
+RUN apt-get update && apt-get install -y python3.9 python3-pip
+
+RUN pip3 install uv
+
+# Copy the rest of the application code
+COPY . .
+
+# Set up the Python virtual environment
+RUN python3 -m uv venv
+RUN . .venv/bin/activate && uv pip install -r rag-chatbot/requirements.txt
+
+# Expose the port the app runs on
+EXPOSE 3000
+
+# Command to run the app
+CMD ["node", "index.js"]
+
+# FROM node:18-alpine AS node-builder
+
+# WORKDIR /app
+
+# RUN npm install -g pnpm
+
+# COPY package.json pnpm-lock.yaml ./
+
+# RUN pnpm install
+
+# FROM python:3.9-slim AS python-builder
+
+# WORKDIR /app
+
+# RUN pip install uv
+
+# COPY ./rag-chatbot/requirements.txt .
+
+# RUN uv venv
+
+# RUN chmod +x .venv/bin/activate
+
+# RUN . .venv/bin/activate && uv pip install -r requirements.txt
+
+# FROM node:18-alpine
+
+# WORKDIR /app
+
+# COPY --from=node-builder /app /app
+
+# RUN apk add --no-cache python3 py3-pip
+
+# COPY --from=python-builder /app/.venv /app/.venv
+
+# ENV VIRTUAL_ENV=/app/.venv
+# ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# COPY . .
+
+# EXPOSE 3000:3000
+
+# CMD ["npm", "start"]

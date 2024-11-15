@@ -312,7 +312,9 @@ const MyForm = () => {
     }
     let res = "";
     axios
-      .post("http://localhost:3000/predict", { data: dataArray })
+      .post("https://ayur-vision-server.vercel.app/predict", {
+        data: dataArray,
+      })
       .then(async (response) => {
         console.log(response);
 
@@ -322,7 +324,7 @@ const MyForm = () => {
         setApiResponse(res);
         setIsSubmitting(false);
         await axios
-          .post(`http://localhost:3000/chatbot/?msg=${res}`)
+          .post(`https://ayur-vision-server.vercel.app/chatbot/?msg=${res}`)
           .then((result) => {
             console.log(result);
           })
