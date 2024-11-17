@@ -16,6 +16,7 @@ jobs:
           node-version: "18.x"
         -name: install dependencies
         run: npm install
+        working-directory: server
         -name: deploy to azure app services
         uses: azure/webapps-deploy@v2
         with:
