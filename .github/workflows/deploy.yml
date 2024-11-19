@@ -29,9 +29,10 @@ jobs:
       - name: Install Python dependencies
         run: |
           cd server
-          python -m venv .venv
+          pip install uv
+          uv venv
           source .venv/bin/activate
-          pip install -r ./rag-chatbot/requirements.txt
+          uv pip install -r ./rag-chatbot/requirements.txt
 
       - name: Log in to Azure
         uses: azure/login@v2
