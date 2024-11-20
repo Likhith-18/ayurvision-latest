@@ -33,11 +33,6 @@ jobs:
           uv venv
           source .venv/bin/activate
 
-      - name: Clean up unnecessary files
-        run: |
-          cd server
-          rm -rf node_modules
-
       - name: Log in to Azure
         uses: azure/login@v1
         with:
