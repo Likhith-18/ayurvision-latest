@@ -46,7 +46,7 @@ const getPrakriti = (dataToSend, res) => {
   //     : path.join("source", virtualEnvPath, "bin", "activate");
   const activateScript = path.join("source", virtualEnvPath, "bin", "activate");
   // console.log(activateScript);
-  const activateProcess = exec(activateScript, [], { shell: true });
+  const activateProcess = exec(activateScript, { shell: true });
   activateProcess.stdout.on("data", (data) => {
     console.log(`stdout (activate): ${data}`);
   });
@@ -57,7 +57,7 @@ const getPrakriti = (dataToSend, res) => {
 
   activateProcess.on("close", (code) => {
     console.log(`child process (activate) exited with code ${code}`);
-    const pythonProcess = spawn("./child.js", []);
+    const pythonProcess = fork("./child.js");
 
     console.log("running inside getPrakriti");
     const data = dataToSend.data;
@@ -95,20 +95,14 @@ app.post("/chatbot", (req, res) => {
   getPrakriti(input_data, res);
 });
 
-// app.get("/chatbot", (req, res) => {
-//   // console.log("prakriti request send");
-//   const input_data = req.query.msg || "";
-//   getPrakriti(input_data, res);
-// });
-
 app.post("/predict", (req, res) => {
   console.log("Request received");
   // Receive input data from client
   const inputData = req.body;
-  const pythonExecutable = path.resolve(__dirname, ".venv", "bin", "python");
+  // const pythonExecutable = path.resolve(__dirname, ".venv", "bin", "python");
   // Spawn child process
-  // const pythonProcess = spawn("python", ["model.py"]);
-  const pythonProcess = spawn(pythonExecutable, ["./model.py"]);
+  const pythonProcess = spawn("python3", ["./model.py"]);
+  // const pythonProcess = spawn(pythonExecutable, ["./model.py"]);
 
   // Send input data to child process
   pythonProcess.stdin.write(JSON.stringify(inputData));
@@ -137,6 +131,8 @@ app.post("/predict", (req, res) => {
     try {
       // console.log(dataToSend);
       res.status(200).json(dataToSend);
+      getPrakriti({ prakriti: dataToSend });
+      return;
     } catch (error) {
       console.error("Error:", error.msg);
       res.status(500).send("Internal Server Error");
