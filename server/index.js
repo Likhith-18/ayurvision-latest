@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
-import { fork, spawn } from "child_process";
+import { fork, spawn, exec } from "child_process";
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: "10mb" }));
