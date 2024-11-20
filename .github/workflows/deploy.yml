@@ -32,7 +32,6 @@ jobs:
           pip install uv
           uv venv
           source .venv/bin/activate
-          uv pip install -r ./rag-chatbot/requirements.txt
 
       - name: Clean up unnecessary files
         run: |
