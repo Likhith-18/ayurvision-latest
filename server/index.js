@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 const __dirname = path.resolve();
 
 const getPrakriti = (dataToSend, res) => {
-  const pythonProcess = spawn("./child.js", []);
+  const pythonProcess = fork("./child.js");
 
   console.log("running inside getPrakriti");
   const data = dataToSend.data;
