@@ -80,7 +80,6 @@ process.on("message", async (msg) => {
     if (error) {
       console.log("error here : ", error);
       process.send({ error: stderr });
-      return;
     }
     process.send({ data: stdout });
     process.send({ data: stderr });

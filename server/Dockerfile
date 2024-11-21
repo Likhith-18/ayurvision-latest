@@ -72,7 +72,7 @@
 
 FROM nikolaik/python-nodejs:python3.9-nodejs23-slim
 
-WORKDIR /app
+WORKDIR /server
 
 COPY ./rag-chatbot/requirements.txt ./rag-chatbot/
 
@@ -81,12 +81,12 @@ COPY package*.json ./
 
 RUN npm install
 
-RUN uv venv /app/.venv
-RUN uv pip install --no-cache-dir -r ./rag-chatbot/requirements.txt
+RUN uv venv
+RUN uv pip install --no-cache-dir -r ./requirements.txt
 
 COPY . .
 
-COPY start.sh ./
+COPY start.sh .
 RUN chmod +x start.sh
 
 EXPOSE 3000
