@@ -89,10 +89,23 @@ const getPrakriti = (dataToSend, res) => {
   });
 };
 
-app.post("/chatbot", (req, res) => {
+const updatePrakriti = async (dataToSend, res) => {
+  try {
+    const response = await axios.post("http://localhost:8000/update-prakriti", {
+      prakriti: dataToSend,
+    });
+    console.log("Update Prakriti response:", response.data);
+    res.status(200).json({ success: true, data: dataToSend });
+  } catch (error) {
+    console.error("Error updating Prakriti:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+app.post("/chatbot", async (req, res) => {
   console.log("prakriti request send");
   let input_data = req.query.msg || "";
-  getPrakriti(input_data, res);
+  await updatePrakritiPrakriti(input_data, res);
 });
 
 app.post("/predict", (req, res) => {
@@ -108,11 +121,11 @@ app.post("/predict", (req, res) => {
   pythonProcess.stdin.write(JSON.stringify(inputData));
   pythonProcess.stdin.end();
 
-  var dataToSend = "";
+  let dataToSend = "";
 
   // Listen for output from child process
   pythonProcess.stdout.on("data", (data) => {
-    dataToSend = data.toString();
+    dataToSend += data.toString();
   });
   pythonProcess.stdout.on("error", (err) => {
     console.error("Error in stdout:", err);
@@ -123,16 +136,13 @@ app.post("/predict", (req, res) => {
     console.error("Error in stderr:", data.toString());
   });
 
-  pythonProcess.on("close", (code) => {
+  pythonProcess.on("close", async (code) => {
     console.log(`child process close all stdio with code ${code}`);
     console.log(dataToSend);
-    // getPrakriti({ prakriti: dataToSend });
 
     try {
-      // console.log(dataToSend);
       res.status(200).json(dataToSend);
-      getPrakriti({ prakriti: dataToSend });
-      return;
+      await updatePrakriti({ prakriti: dataToSend });
     } catch (error) {
       console.error("Error:", error.msg);
       res.status(500).send("Internal Server Error");

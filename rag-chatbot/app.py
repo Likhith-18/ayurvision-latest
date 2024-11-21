@@ -5,9 +5,11 @@ from fastapi.responses import JSONResponse
 from chainlit.utils import mount_chainlit
 from pydantic import BaseModel
 from config import config
-
+import os
 
 app = FastAPI()
+
+port = int(os.getenv('PORT', 5000))
 
 
 class PrakritiUpdateRequest(BaseModel):
@@ -34,4 +36,4 @@ mount_chainlit(app=app, target="app-chainlit.py", path="/chatbot")
 
 if __name__ == '__main__':
     import uvicorn
-    uvicorn.run(app)
+    uvicorn.run(app, host="localhost", port=port)
