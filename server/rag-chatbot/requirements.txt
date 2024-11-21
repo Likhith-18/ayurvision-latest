@@ -2,11 +2,7 @@ fastapi
 uvicorn
 langchain
 langchain-community
-llama-index
-llama-parse 
-fastembed
+langchain-groq
 qdrant_client
 python-dotenv
-langchain-groq
 chainlit==1.3.2
-unstructured[md]
