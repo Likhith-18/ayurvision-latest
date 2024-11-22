@@ -149,7 +149,7 @@ async def main(message):
     documents are then extracted from the response.
     """
 
-    if config.needs_refresh:
+    if config.needs_refresh:  # for updating the prakriti if update prakriti endpoint is hit
         chain = qa_bot(config.prakriti)
         cl.user_session.set("chain", chain)
         config.needs_refresh = False  # Reset refresh flag
@@ -168,7 +168,7 @@ async def main(message):
     # answer = answer.replace(".", ".\n")
     source_documents = res["source_documents"]
 
-    text_elements = []  # type: List[cl.Text]
+    text_elements = []
 
     if source_documents:
         for source_idx, source_doc in enumerate(source_documents):
@@ -176,26 +176,13 @@ async def main(message):
             # Create the text element referenced in the message
             text_elements.append(
                 cl.Text(content=source_doc.page_content,
-                        name=source_name, hidden=True)
+                        name=source_name, display="side")
             )
         source_names = [text_el.name for text_el in text_elements]
 
         if source_names:
-            answer += f"\nSources:" + str(source_names)
+            answer += f"\nSources: {', '.join(source_names)}"
         else:
             answer += "\nNo sources found"
-        # if source_names:
-        #     # If there are sources, show a button to reveal them
-        #     button_element = cl.Button(
-        #         name="reveal_sources", text="Show Sources")
-
-        #     # Append the button to the text elements
-        #     text_elements.append(button_element)
-
-        #     # Prepare the message content
-        #     answer += "\nClick the button below to reveal sources"
-        # else:
-        #     # If no sources, just display "No sources found"
-        #     answer += "\nNo sources found"
 
     await cl.Message(content=answer, elements=text_elements).send()

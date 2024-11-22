@@ -107,6 +107,8 @@ web_modules/
 .env.production.local
 .env.local
 
+.chainlit/
+.files/
 .secrets
 notes.txt
 
