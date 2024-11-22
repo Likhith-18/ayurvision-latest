@@ -312,7 +312,7 @@ const MyForm = () => {
     }
     let res = "";
     axios
-      .post("http://localhost:8000/api/predict", {
+      .post("http://localhost:8000/predict", {
         data: dataArray,
       })
       .then(async (response) => {
@@ -320,7 +320,7 @@ const MyForm = () => {
 
         // res = response.data.data;
         // console.log(res);
-        res = response.prediction;
+        res = response.data.prakriti;
         console.log(res);
 
         setApiResponse(res);

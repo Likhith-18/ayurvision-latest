@@ -93,7 +93,8 @@ web_modules/
 
 # Optional REPL history
 .node_repl_history
-
+node_modules/
+.yarn/
 # Output of 'npm pack'
 *.tgz
 
