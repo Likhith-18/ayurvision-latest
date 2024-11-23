@@ -84,6 +84,11 @@ app.add_middleware(
 )
 
 
+@app.get('/')
+def hello():
+    return "this is ayurvision-mlmodel for predictions"
+
+
 @app.post('/mlmodel')
 async def predict_prakriti(request: Request):
     input = await request.json()
