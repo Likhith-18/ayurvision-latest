@@ -66,7 +66,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 model = tf.keras.models.load_model('./models/local_model.keras')
-model.load_weights('./models/local_model.weights.h5')
+# model.load_weights('./models/local_model.weights.h5')
 
 classes = ['Kapha', 'Pitta', 'Vata']
 
