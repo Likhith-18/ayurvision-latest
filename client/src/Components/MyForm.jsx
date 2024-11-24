@@ -312,7 +312,7 @@ const MyForm = () => {
     }
     let res = "";
     axios
-      .post("http://localhost:8000/predict", {
+      .post("https://ayurvision-server.onrender.com/predict", {
         data: dataArray,
       })
       .then(async (response) => {
