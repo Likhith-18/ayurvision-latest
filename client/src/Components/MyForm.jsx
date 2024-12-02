@@ -185,7 +185,7 @@ import MoonLoader from "react-spinners/MoonLoader";
 import axios from "axios";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-
+// require("dotenv").config();
 const MyForm = () => {
   const [formData, setFormData] = useState({});
   const [questions, setQuestions] = useState([]);
@@ -313,7 +313,7 @@ const MyForm = () => {
     let res = "";
     axios
       // .post("https://ayurvision-server.onrender.com/predict", {
-      .post(`${process.env.AZURE_WEB_APP_URL}/predict`, {
+      .post(`${import.meta.env.VITE_AZURE_WEB_APP_URL}/predict`, {
         data: dataArray,
       })
       .then(async (response) => {

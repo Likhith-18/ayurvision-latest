@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "1.7.7",
+    "dotenv": "^16.4.5",
     "formik": "2.4.6",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -28,6 +29,7 @@
     "eslint-plugin-react-hooks": "5.0.0",
     "eslint-plugin-react-refresh": "0.4.14",
     "postcss": "8.4.49",
+    "react-error-overlay": "^6.0.9",
     "tailwindcss": "3.4.15",
     "vite": "5.2.0"
   }
