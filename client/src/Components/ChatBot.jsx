@@ -4,7 +4,7 @@ const ChatBot = () => {
       <iframe
         // src="http://localhost:8000/chatbot"
         // src="https://ayurvision-server.onrender.com/chatbot/"
-        src={process.env.GOOGLE_CLOUD_RUN_URL}
+        src={process.env.AZURE_WEB_APP_URL}
         width="100%"
         height="94%"
         style={{ border: "none" }}

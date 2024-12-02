@@ -313,7 +313,7 @@ const MyForm = () => {
     let res = "";
     axios
       // .post("https://ayurvision-server.onrender.com/predict", {
-      .post(`${process.env.GOOGLE_CLOUD_RUN_URL}/predict`, {
+      .post(`${process.env.AZURE_WEB_APP_URL}/predict`, {
         data: dataArray,
       })
       .then(async (response) => {
