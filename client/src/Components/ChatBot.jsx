@@ -12,7 +12,6 @@ const ChatBot = () => {
         height="94%"
         style={{ border: "none" }}
         title="chat bot"
-        sandbox="allow-same-origin allow-top-navigation"
       ></iframe>
     </div>
   );
