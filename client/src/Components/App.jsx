@@ -8,9 +8,9 @@ export default function App() {
     <Router>
       <div>
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/MyForm" element={<MyForm />} />
-          <Route exact path="/Chatbot" element={<ChatBot />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/MyForm" element={<MyForm />} />
+          {/* <Route path="/Chatbot" element={<ChatBot />} /> */}
         </Routes>
       </div>
     </Router>

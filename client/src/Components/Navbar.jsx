@@ -9,7 +9,9 @@ export default function Navbar() {
               className="h-16"
               src="leaf-s-logo-icon-vector-illustration-template-design_878729-1905-removebg-preview (1) (1).png"
             />
-            <Link className="px-3">AyurVision</Link>
+            <Link className="px-3" to="/">
+              AyurVision
+            </Link>
           </div>
           <ul>
             <li>
