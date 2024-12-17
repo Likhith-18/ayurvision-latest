@@ -11,7 +11,7 @@ const ChatBot = () => {
         width="100%"
         height="94%"
         style={{ border: "none" }}
-        title="chat bot"
+        title="chatbot"
       ></iframe>
     </div>
   );

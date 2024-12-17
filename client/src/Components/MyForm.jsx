@@ -337,6 +337,9 @@ const MyForm = () => {
     setFormData({});
   };
 
+  const capitalize = (s) =>
+    (s && String(s[0]).toUpperCase() + String(s).slice(1)) || "";
+
   return (
     <>
       <div style={{ marginTop: "70px" }}>
@@ -401,7 +404,7 @@ const MyForm = () => {
                 )}
                 {apiResponse && !isSubmitting && (
                   <p className="text-xl ">
-                    Your Prakriti is: <b>{apiResponse}</b>
+                    Your Prakriti is: <b>{capitalize(apiResponse)}</b>
                   </p>
                 )}
               </div>
