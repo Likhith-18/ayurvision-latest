@@ -1,6 +1,6 @@
 const ChatBot = () => {
-  const api = import.meta.env.CHATBOT_URL;
-  // console.log(api);
+  const api = import.meta.env.VITE_CHATBOT_URL;
+  console.log(api);
 
   return (
     <div style={{ width: "100vw", height: "100vh", margin: 0 }}>

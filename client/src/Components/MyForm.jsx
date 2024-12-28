@@ -313,16 +313,16 @@ const MyForm = () => {
     let res = "";
     axios
       // .post("https://ayurvision-server.onrender.com/predict", {
-      .post(`${import.meta.env.VITE_AZURE_WEB_APP_URL}/predict`, {
+      .post(`${import.meta.env.VITE_AZURE_WEB_APP_URL}`, {
         data: dataArray,
       })
       .then(async (response) => {
-        console.log(response);
+        // console.log(response);
 
         // res = response.data.data;
         // console.log(res);
         res = response.data.prakriti;
-        console.log(res);
+        // console.log(res);
 
         setApiResponse(res);
         setIsSubmitting(false);
