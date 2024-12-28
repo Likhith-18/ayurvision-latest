@@ -6,8 +6,8 @@ const ChatBot = () => {
     <div style={{ width: "100vw", height: "100vh", margin: 0 }}>
       <iframe
         // src="http://localhost:8000/chatbot"
-        // src="https://ayurvision-server.onrender.com/chatbot/"
-        src={api}
+        src="https://ayurvision-server.azurewebsites.net/chatbot"
+        // src={api}
         width="100%"
         height="94%"
         style={{ border: "none" }}
