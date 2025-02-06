@@ -1,5 +1,12 @@
 import { Link } from "react-router-dom";
 export default function Navbar() {
+  // const handleRedirect = () => {
+  //   window.location.href =
+  //     "https://ayurvision-server.azurewebsites.net/chatbot"; // Redirect instantly
+  // };
+
+  // <button onClick={handleRedirect}>Go to Example</button>;
+
   return (
     <>
       <nav>
@@ -18,6 +25,9 @@ export default function Navbar() {
               <Link className="text-white" to="/">
                 Home
               </Link>
+              {/* <button className="text-white" onClick={handleRedirect}>
+                Go to Example
+              </button> */}
             </li>
             <li>
               <Link className="text-white" to="/MyForm">
